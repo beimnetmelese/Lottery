@@ -77,7 +77,7 @@ export default function LotteryApp() {
           { ...newWinner, date: new Date().toLocaleString() },
           ...prev,
         ]);
-        setPlayers((prev) => prev.filter((p) => p.id !== newWinner.id));
+        setPlayers([]);
 
         setTimeout(() => setShowConfetti(false), 7000);
       }
@@ -185,8 +185,8 @@ export default function LotteryApp() {
           className="w-full p-3 mb-3 rounded-xl bg-white/90 text-black placeholder-gray-600 focus:ring-2 focus:ring-yellow-400 focus:outline-none transition-all"
         />
         <input
-          type="text"
-          placeholder="Lucky Number"
+          type="number"
+          placeholder="Phone Number"
           value={number}
           onChange={(e) => setNumber(e.target.value)}
           onKeyDown={handleKeyPress}
