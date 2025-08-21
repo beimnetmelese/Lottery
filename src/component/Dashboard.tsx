@@ -314,40 +314,60 @@ export default function LotteryApp() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 flex items-center justify-center bg-black/90 z-50 p-4"
+            className="fixed inset-0 flex items-center justify-center bg-black/80 z-50 p-4"
             onClick={closeWinnerPopup}
           >
             <motion.div
-              initial={{ scale: 0.8, y: 50 }}
+              initial={{ scale: 0.85, y: 40 }}
               animate={{ scale: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 100, damping: 15 }}
-              className="relative w-full max-w-2xl bg-gradient-to-br from-yellow-500 via-yellow-400 to-yellow-300 p-1 rounded-3xl shadow-2xl"
+              className="relative w-full max-w-2xl rounded-3xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Golden border effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-yellow-300 to-yellow-600 rounded-3xl opacity-80 blur-md -z-10"></div>
+              {/* Luxurious golden frame */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-400 rounded-3xl p-1.5">
+                <div className="absolute inset-0 bg-gradient-to-b from-amber-300 to-amber-600 opacity-70 rounded-3xl"></div>
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds.png')] opacity-10 rounded-3xl"></div>
+              </div>
 
-              {/* Main golden background */}
-              <div className="bg-gradient-to-b from-yellow-500 via-yellow-400 to-yellow-300 rounded-3xl p-8 text-center relative overflow-hidden border-2 border-yellow-200">
-                {/* Subtle shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-100/30 to-transparent animate-pulse"></div>
+              {/* Main content container */}
+              <div className="relative bg-gradient-to-b from-amber-50 to-amber-100 rounded-3xl p-10 text-center overflow-hidden border-4 border-amber-300 shadow-2xl">
+                {/* Subtle decorative elements */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-300/20 rounded-full blur-xl"></div>
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-amber-400/20 rounded-full blur-xl"></div>
+
+                {/* Ornamental corners */}
+                <div className="absolute top-4 left-4 w-8 h-8 border-t-4 border-l-4 border-amber-500"></div>
+                <div className="absolute top-4 right-4 w-8 h-8 border-t-4 border-r-4 border-amber-500"></div>
+                <div className="absolute bottom-4 left-4 w-8 h-8 border-b-4 border-l-4 border-amber-500"></div>
+                <div className="absolute bottom-4 right-4 w-8 h-8 border-b-4 border-r-4 border-amber-500"></div>
 
                 {/* Close button */}
                 <button
                   onClick={closeWinnerPopup}
-                  className="absolute top-5 right-5 text-yellow-800 hover:text-yellow-900 text-2xl bg-yellow-200/80 hover:bg-yellow-200 p-2 rounded-full transition-all duration-200 z-10 shadow-md"
+                  className="absolute top-5 right-5 text-amber-700 hover:text-amber-900 text-xl bg-amber-200/80 hover:bg-amber-300 p-2 rounded-full transition-all duration-200 z-10 shadow-md border border-amber-300"
                 >
                   ✕
                 </button>
 
-                {/* Trophy icon */}
+                {/* Trophy icon with elegant presentation */}
                 <motion.div
                   initial={{ scale: 0, rotate: -180 }}
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-                  className="text-7xl mb-6 drop-shadow-lg"
+                  className="relative mb-6"
                 >
-                  🏆
+                  <div className="text-7xl text-amber-600 drop-shadow-lg">
+                    🏆
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.5 }}
+                      className="w-5 h-5 bg-yellow-300 rounded-full blur-sm"
+                    ></motion.div>
+                  </div>
                 </motion.div>
 
                 {/* Title */}
@@ -355,27 +375,27 @@ export default function LotteryApp() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="text-4xl font-bold mb-4 text-white drop-shadow-md"
+                  className="text-2xl ml-3 font-bold mb-4 text-amber-900 font-serif"
                 >
                   CONGRATULATIONS!
                 </motion.h2>
 
                 {/* Winner details */}
                 <motion.div
-                  initial={{ scale: 0.5 }}
-                  animate={{ scale: 1 }}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
                   className="my-8"
                 >
-                  <div className="text-5xl font-extrabold text-white p-2 drop-shadow-md">
+                  <div className="text-5xl font-bold text-amber-800 p-2 font-serif tracking-wide">
                     {winner.name}
                   </div>
-                  <p className="text-2xl font-semibold mt-6 text-white">
-                    Lucky Number:{" "}
-                    <span className="text-3xl bg-yellow-600 text-white px-4 py-2 rounded-full font-bold shadow-inner">
-                      {winner.number}
-                    </span>
-                  </p>
+                  <div className="mt-8 text-xl text-amber-700 font-medium">
+                    Lucky Number
+                  </div>
+                  <div className="text-4xl font-bold bg-gradient-to-r from-amber-500 to-amber-600 text-amber-50 px-6 py-3 rounded-full inline-block mt-2 shadow-inner border-2 border-amber-400">
+                    {winner.number}
+                  </div>
                 </motion.div>
 
                 {/* Celebration text */}
@@ -383,9 +403,9 @@ export default function LotteryApp() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8 }}
-                  className="text-xl font-medium text-white mb-8"
+                  className="text-xl font-medium text-amber-700 mb-8 italic"
                 >
-                  You are the winner! 🎊
+                  You are our lucky winner!
                 </motion.div>
 
                 {/* Celebrate button */}
@@ -395,15 +415,13 @@ export default function LotteryApp() {
                   transition={{ delay: 1 }}
                   whileHover={{
                     scale: 1.05,
-                    boxShadow: "0 0 25px rgba(139, 69, 19, 0.4)",
+                    boxShadow: "0 5px 15px rgba(180, 120, 50, 0.4)",
                   }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    setShowConfetti(true);
-                  }}
-                  className="bg-yellow-800 z-[55] hover:bg-yellow-900 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transition-all duration-300 border-2 border-yellow-700"
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setShowConfetti(true)}
+                  className="bg-gradient-to-b from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-amber-50 font-semibold text-lg px-10 py-4 rounded-full shadow-lg transition-all duration-300 border-2 border-amber-500 uppercase tracking-wide"
                 >
-                  Celebrate! 🎉
+                  Celebrate Victory 🎉
                 </motion.button>
 
                 {/* Decorative elements */}
@@ -411,25 +429,25 @@ export default function LotteryApp() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.2 }}
-                  className="flex justify-center space-x-4 mt-6 text-3xl text-yellow-800"
+                  className="flex justify-center space-x-6 mt-8 text-3xl text-amber-600"
                 >
                   <motion.span
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{ repeat: Infinity, duration: 2, delay: 0 }}
+                    animate={{ y: [0, -8, 0], rotate: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 3, delay: 0 }}
                   >
-                    🎊
+                    ✨
                   </motion.span>
                   <motion.span
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{ repeat: Infinity, duration: 2, delay: 0.3 }}
+                    animate={{ y: [0, -8, 0], rotate: [0, -5, 0] }}
+                    transition={{ repeat: Infinity, duration: 3, delay: 0.5 }}
                   >
-                    🎉
+                    ⭐
                   </motion.span>
                   <motion.span
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{ repeat: Infinity, duration: 2, delay: 0.6 }}
+                    animate={{ y: [0, -8, 0], rotate: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 3, delay: 1 }}
                   >
-                    🥳
+                    ✨
                   </motion.span>
                 </motion.div>
               </div>
